@@ -5,6 +5,7 @@
 package tarea7f;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -110,8 +111,8 @@ public class Empleado {
         sb.append(nombreCompleto).append(",");
         sb.append(dni).append(",");
         sb.append(puesto).append(",");
-        sb.append(fechaPosesion).append(",");
-        sb.append(fechaCese).append(",");
+        sb.append(formatearFecha(fechaPosesion)).append(",");
+        sb.append(formatearFecha(fechaCese)).append(",");
         sb.append(telefono).append(",");
         sb.append((evaluador) ? "Sí":"No").append(",");
         sb.append((coordinador) ? "Sí":"No");
@@ -141,5 +142,13 @@ public class Empleado {
         return Objects.equals(this.dni, other.dni);
     }
     
+    // Método para formatear la fecha como quiero que salga en el toString
+    private static String formatearFecha(LocalDate fecha){
+        String fechaFormateada = "";
+        if (fecha != null){
+            fechaFormateada = fecha.format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        }
+        return fechaFormateada;
+    }
     
 }
